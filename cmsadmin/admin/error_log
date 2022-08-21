@@ -1,0 +1,12 @@
+[17-Aug-2022 14:02:24 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/admin/home.php on line 16
+[17-Aug-2022 14:02:24 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/admin/home.php on line 17
+[17-Aug-2022 14:08:42 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/admin/home.php on line 16
+[17-Aug-2022 14:08:42 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/admin/home.php on line 17
+[17-Aug-2022 14:09:33 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/admin/home.php on line 16
+[17-Aug-2022 14:09:33 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/admin/home.php on line 17
+[17-Aug-2022 14:10:14 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/admin/home.php on line 16
+[17-Aug-2022 14:10:14 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/admin/home.php on line 17
+[17-Aug-2022 14:10:26 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/admin/home.php on line 16
+[17-Aug-2022 14:10:26 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/admin/home.php on line 17
+[17-Aug-2022 14:11:07 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/admin/home.php on line 16
+[17-Aug-2022 14:11:07 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/admin/home.php on line 17

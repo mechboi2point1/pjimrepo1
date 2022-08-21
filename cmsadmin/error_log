@@ -1,0 +1,5 @@
+[18-Aug-2022 13:19:58 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/authentication.php on line 26
+[18-Aug-2022 13:25:07 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/authentication.php on line 26
+[18-Aug-2022 13:25:43 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/authentication.php on line 26
+[18-Aug-2022 13:25:49 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/authentication.php on line 26
+[18-Aug-2022 13:27:42 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/authentication.php on line 26
