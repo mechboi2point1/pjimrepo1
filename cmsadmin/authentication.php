@@ -14,8 +14,9 @@ if (isset($_SESSION['token'])) {
     $sql = "select * from sessionTable where token='$token'";
     $result = mysqli_query($con, $sql);
     //$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $count = mysqli_num_rows($result);
     if ($count == 1) {
-        $count = mysqli_num_rows($result);
+
         echo "<h1><center> Login successful using session token </center></h1>";
         sleep(1);
         echo "<h4><center>Hi " . $row['name'] . ", Please wait you will be redirected.... </center></h4>";
@@ -46,7 +47,7 @@ if ($count == 1) {
     $result = mysqli_query($con, $sql);
 
 
-
+    $_SESSION['user'] = $username;
     $_SESSION['name'] = $row['name'];
     $_SESSION['token'] = $token1;
     $_SESSION['email'] = $email;

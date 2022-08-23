@@ -1,16 +1,40 @@
 <?php
-    include('include/header.php');
+session_start();
+include('include/header.php');
+include('connection.php');
+if (isset($_SESSION['student_token'])) {
+    $token = $_SESSION['student_token'];
+    $sql = "select * from studnet_session_info where token='$token'";
+    $result = mysqli_query($con, $sql);
+    $count = mysqli_num_rows($result);
+    if ($count == 1) {
+        $date_now = date("Y-m-d H:m:s");
+        $row = mysqli_fetch_array($result);
+        if ($date_now > $row['expiry']) {
+            //session expired
+
+        } else {
+            echo "<script>window.location.href='./student_center_data.php';</script>";
+        }
+    } else {
+        //not good session
+
+    }
+} else {
+    //unauthorised
+
+}
 ?>
-    <div class="pagecontent z100">
-        <div class="container">
-            <div class="slide_banner">
-                <img src="images/student_center.jpg" alt="student_center" class="img-fluid w100">
-            </div>
-            <div class=" mt-3 mb-3 text-center">
-                <button class="btn-success btn btn_logo" type="submit" name="submit"  data-toggle="modal" data-target="#student_center">Student Login</button>
-            </div>
+<div class="pagecontent z100">
+    <div class="container">
+        <div class="slide_banner">
+            <img src="images/student_center.jpg" alt="student_center" class="img-fluid w100">
         </div>
-	    <!-- <div class="container">
+        <div class=" mt-3 mb-3 text-center">
+            <button class="btn-success btn btn_logo" type="submit" name="submit" data-toggle="modal" data-target="#student_center">Student Login</button>
+        </div>
+    </div>
+    <!-- <div class="container">
             <section class="col-md-12 p-0">
                 <div class="drop_down_list mt-3">
                     <select class="form-control">
@@ -612,9 +636,7 @@
                 </div>            
             </section>
         </div> -->
-    </div>    
+</div>
 <?php
-    include('include/footer.php');
+include('include/footer.php');
 ?>
-
-

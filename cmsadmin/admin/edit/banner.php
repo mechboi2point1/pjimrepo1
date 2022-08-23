@@ -7,97 +7,57 @@
 <html>
   
 <head>
-    <title>
-        Banner Edit
-    </title>
-      
-    <meta charset='utf-8'> 
-      
-    <meta name='viewport' content='width=device-width, initial-scale=1'> 
-      
-    <link rel='stylesheet' href= 
-'https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'> 
-        
-    <script src= 
-'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'> 
-    </script> 
-        
-    <script src= 
-'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'> 
-    </script> 
-        
-    <script src= 
-'https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'> 
-    </script> 
-    <style>
-    :root {
-  --gradient: linear-gradient(to left top, #DD2476 10%, #FF512F 90%) !important;
-}
+     <title>Banner Content Management</title>
+     <style>
+         h3 {
+             font-family: Calibri;
+             font-size: 25pt;
+             font-style: normal;
+             font-weight: bold;
+             color: SlateBlue;
+             text-align: center;
+             text-decoration: underline
+         }
 
-body {
+         table {
+             font-family: Calibri;
+             color: white;
+             font-size: 11pt;
+             font-style: normal;
+             font-weight: bold;
+
+             background-color: SlateBlue;
+             border-collapse: collapse;
+             border: 2px solid navy
+         }
+
+         table.inner {
+             border: 0px
+         }
+     </style>
   
-}
+<body class='xyz'>"; ?>
 
-.card {
-  background: #222;
-  border: 1px solid #dd2476;
-  color: rgba(250, 250, 250, 0.8);
-  margin-bottom: 2rem;
-}
+ <body>
+     <h3>Banner Content Management</h3>
 
-.btn {
-  border: 5px solid;
-  border-image-slice: 1;
-  background: var(--gradient) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  border-image-source:  var(--gradient) !important; 
-  text-decoration: none;
-  transition: all .4s ease;
-}
 
-.btn:hover, .btn:focus {
-      background: var(--gradient) !important;
-  -webkit-background-clip: none !important;
-  -webkit-text-fill-color: #fff !important;
-  border: 5px solid #fff !important; 
-  box-shadow: #222 1px 0 10px;
-  text-decoration: underline;
-}
-    </style>
-      
-</head>
-  
-<body class='xyz'>";
-    if (isset($_SESSION['token'])) {
-        $token = $_SESSION['token'];
-        $sql = "select * from sessionTable where token='$token'";
-        $result = mysqli_query($con, $sql);
-        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-        $count = mysqli_num_rows($result);
-        $email = $row['email'];
-        if ($count == 1) {
+     <table align="center" cellpadding="10">
 
-            if (isset($_POST['operations'])) {
-                if ($_POST['operations'] == 'delete') {
 
-                    $sql = "select *from banner_table where banner_id=" . $_POST['bannerid'];
-                    $result = mysqli_query($con, $sql);
 
-                    $count = mysqli_num_rows($result);
-                    if ($count > 0) {
 
-                        $sql = "DELETE FROM banner_table where banner_id=" . $_POST['bannerid'];
-                        $result = mysqli_query($con, $sql);
-                    } else {
-                        echo '<h4>Banner is already deleted or dosenot exist in Data Base.</h4>';
-                        echo '<hr>';
-                    }
-                }
-            }
 
-            echo '<h2>Upload New Banners</h2>';
-            echo '<form class="form" action="../../../images/banner/uploadbanner.php" method="POST"
+         <tr>
+             <td>Add New Banner</td>
+             <?php
+                $sql = "select * from suggested_link_table ";
+                $result = mysqli_query($con, $sql);
+
+                $count = mysqli_num_rows($result);
+
+                echo '<td>
+                <form class="form" action="../../../images/banner/uploadbanner.php" method="POST"
             enctype="multipart/form-data">
  
         
@@ -115,55 +75,81 @@ body {
             <input class="btn btn-success" type="submit" name="submit" value="Upload" >
         </p>
  
-    </form>';
-            echo '<hr>';
-            echo '<h2 style="text-align:center;">Active Banners</h2>';
-            $sql = "select * from banner_table";
-            $result = mysqli_query($con, $sql);
+    </form>
 
-            $count = mysqli_num_rows($result);
+            </td>';
+
+                ?>
+
+         </tr>
 
 
-            $i = 0;
-            echo '<div class="container mx-auto mt-4">
-  <div class="row">';
-            while ($row = mysqli_fetch_assoc($result)) {
-                $path = $row['path'];
-                $bannerid = $row['banner_id'];
-                $by = $row['addedby'];
-                $time = $row['timestamp'];
+         <tr>
+             <td>Active Banners </td>
 
-                echo '<div class="col-md-4">
-      <div class="card" style="width: 18rem;">
-  <img src="' . $path . '" class="card-img-top" alt="..." width="200px" height="150px">
-  <div class="card-body">
-    
-        <h6 class="card-subtitle mb-2 text-muted">Banner Added By:' . $by . ' On:' . $time . '</h6>
-       
-    <form method="POST" action="banner.php">
+             <td>
+                 <table>
+
+
+                     <?php
+                        $sql = "select * from banner_table";
+                        $result = mysqli_query($con, $sql);
+
+                        $count = mysqli_num_rows($result);
+                        $i = 0;
+                        if ($count > 0) {
+                            echo '<tr>
+                        <td align="center"><b>Banner No</b></td>
+                        <td align="center"><b>Image</b></td>
+                        <td align="center"><b>Link</b></td>
+                        <td align="center"><b>Added By</b></td>
+
+                    </tr>';
+                            while ($row = mysqli_fetch_assoc($result)) {
+
+                                $i++;
+
+                                $path = $row['path'];
+                                $bannerid = $row['banner_id'];
+                                $by = $row['addedby'];
+                                $time = $row['timestamp'];
+                                echo '
+                        <tr>
+                        
+                        
+                        
+                        <td><input type="hidden" name="linkid" value="'  . $id . '" readonly>' . $i . '</td>
+                        <td><image src="' . $path . '" alt="..." width="200px" height="150px"></td>
+                        <td><input type="text" name="link" value="'  . $path . '" readonly></td>
+                        <td><input type="text" name="link" value="'  . $by . '" readonly></td>
+                        
+                        
+                        
+                        <td>
+                        <form method="POST" action="banner.php">
 							<input type="hidden" value="' . $bannerid . '" name="bannerid" readonly>
 							<input type="hidden" value="delete" name="operations" readonly>
 							<input type="submit" value="Delete This Banner" name="submit">
-							</form>
-  </div>
-  </div>
-    </div>';
+							</form></td>
+                    </tr>';
+                            }
+                        } else {
+                            echo '<td>No Audio in Data Base</td>';
+                        }
+                        ?>
 
 
-                $i++;
-            }
-            echo '</div></div>';
-        } else {
-            echo 'Not allowed to access this page';
-            header('Location:../../../../pjim/cmsadmin/');
-            exit();
-        }
-    } else {
-        echo 'Not allowed to access this page';
-        header('Location:../../../../pjim/cmsadmin/');
-        exit();
-    }
-    echo '</body></html>';
+
+                 </table>
+
+             </td>
+
+         </tr>
+
+     </table>
 
 
-    ?>
+
+ </body>
+
+ </html>

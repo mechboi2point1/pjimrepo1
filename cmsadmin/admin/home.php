@@ -17,89 +17,23 @@ if (isset($_SESSION['token'])) {
   
 <head>
     <title>
-        How to get circular buttons
-        in bootstrap 4 ?
+       CMS-Admin
     </title>
       
     <meta charset="utf-8"> 
       
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
       
-    <link rel="stylesheet" href= 
-"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
-        
-    <script src= 
-"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> 
-    </script> 
-        
-    <script src= 
-"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"> 
-    </script> 
-        
-    <script src= 
-"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"> 
-    </script> 
+
       
     <style type="text/css">
-    /* Add a black background color to the top navigation */
-.topnav {
-  background-color: #333;
-  overflow: hidden;
-}
+  
 
-/* Style the links inside the navigation bar */
-.topnav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-/* Change the color of links on hover */
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-/* Add a color to the active/current link */
-.topnav a.active {
-  background-color: #04AA6D;
-  color: white;
-}
-        h1 {
-            color:green;
-        }
-        .xyz {
+       .xyz {
             background-size: auto;
             text-align: center;
-            
-        }
-        .btn-circle.btn-sm {
-            width: 30px;
-            height: 30px;
-            padding: 6px 0px;
-            border-radius: 15px;
-            font-size: 8px;
-            text-align: center;
-        }
-        .btn-circle.btn-md {
-            width: 50px;
-            height: 50px;
-            padding: 7px 10px;
-            border-radius: 25px;
-            font-size: 10px;
-            text-align: center;
-        }
-        .btn-circle.btn-xl {
-            width: 200px;
-            height: 200px;
-            padding: 20px 32px;
-            border-radius: 100px;
-            font-size: 14px;
-            text-align: center;
-        }
+            }
+        
         .btn1 {
  width: 200px;
             height: 200px;
@@ -110,7 +44,7 @@ if (isset($_SESSION['token'])) {
   font-size: 22px;
   text-decoration: none;
   margin: 20px;
-  color: #fff;
+  
   position: relative;
   display: inline-block;
 }
@@ -121,36 +55,39 @@ if (isset($_SESSION['token'])) {
   box-shadow: 0px 1px 0px 0px;
 }
 
-
-.green {
-
-  
-  box-shadow: 3px 5px 5px #888888;
-  border-radius: 100px;
-  transition: all 1s ease;
-  transform: scale(1);
-}
-
-.green:hover {
-  background-color: #000;
-/*  Making button bigger on hover  */
-  transform: scale(1.5) perspective(1px)
-}
     </style>
 </head>
   ';
-    include('./adminheader.php');
+
     echo '
 <body class="xyz" style="background-image: url(https://www.cassixcom.in/adminsuper/images/bg.jpg);height: 100%; background-position: center; background-repeat: no-repeat;">
-<div style="padding-top: 150px;"></div>
-    <button type="button" class="btn btn-primary btn1 green" onclick="location.href = \'../admin/edit/banner.php\';" >Banners</a>
-    <button type="button" class="btn btn-secondary btn1 green" onclick="location.href = \'../admin/edit/footeredit1.php\';">Footer</button>
-    <button type="button" class="btn btn-success btn1 green" onclick="location.href = \'../admin/edit/headeredit.php\';">Header</button>
+<center><h3 id="lblGreetings"></h3></center>
+<div style="padding-top: 150px;">
+    <button type="button" class="btn1" onclick="location.href = \'../admin/edit/banner.php\';" >Banners</a>
+    <button type="button" class="btn1" onclick="location.href = \'../admin/edit/footeredit1.php\';">Footer</button>
+    <button type="button" class="btn1" onclick="location.href = \'../admin/edit/headeredit.php\';">Header</button>
     
     
-    <button type="button" class="btn btn-dark btn1 green">Sub Sections</button>
-    
+    <button type="button" class="btn1">Sub Sections</button>
+     </div>
 </body>
+<script>
+var name="' . $name . '"+" ";
+    var myDate = new Date();
+    var hrs = myDate.getHours();
+
+    var greet;
+
+    if (hrs < 12)
+        greet = "Good Morning";
+    else if (hrs >= 12 && hrs <= 17)
+        greet = "Good Afternoon";
+    else if (hrs >= 17 && hrs <= 24)
+        greet = "Good Evening";
+
+    document.getElementById("lblGreetings").innerHTML =
+        "<b>Hi "+name + greet + "</b>.";
+</script> 
   
 </html> 
             ';

@@ -10,137 +10,87 @@ if (isset($_SESSION['token'])) {
   $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
   $count = mysqli_num_rows($result);
   if ($count == 1) {
+    $link = "";
+    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+      $link = "https";
+    else $link = "http";
 
+    // Here append the common URL characters.
+    $link .= "://";
+
+    // Append the host(domain name, ip) to the URL.
+    $link .= $_SERVER['HTTP_HOST'];
+
+    // Append the requested resource location to the URL
+    //$link .= $_SERVER['REQUEST_URI'];
+
+    // Print the link
+    //$link .= '/kalyani2022/pjim/cmsadmin/';
+    $link .= '/pjim/cmsadmin/';
     echo '
             <!DOCTYPE html>
 <html>
   
 <head>
-    <title>
-        How to get circular buttons
-        in bootstrap 4 ?
-    </title>
-      
-    <link rel="stylesheet" href= 
-"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
-        
-    <script src= 
-"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> 
-    </script> 
-        
-    <script src= 
-"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"> 
-    </script> 
-        
-    <script src= 
-"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"> 
-    </script> 
-      
-    <style type="text/css">
-    /* Add a black background color to the top navigation */
-.topnav {
-  background-color: #333;
-  overflow: hidden;
-}
+<title>CMS Admin</title>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 
-/* Style the links inside the navigation bar */
-.topnav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
+   <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
 
-/* Change the color of links on hover */
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-/* Add a color to the active/current link */
-.topnav a.active {
-  background-color: #04AA6D;
-  color: white;
-}
-        h1 {
-            color:green;
-        }
-        .xyz {
-            background-size: auto;
-            text-align: center;
-            
-        }
-        .btn-circle.btn-sm {
-            width: 30px;
-            height: 30px;
-            padding: 6px 0px;
-            border-radius: 15px;
-            font-size: 8px;
-            text-align: center;
-        }
-        .btn-circle.btn-md {
-            width: 50px;
-            height: 50px;
-            padding: 7px 10px;
-            border-radius: 25px;
-            font-size: 10px;
-            text-align: center;
-        }
-        .btn-circle.btn-xl {
-            width: 200px;
-            height: 200px;
-            padding: 20px 32px;
-            border-radius: 100px;
-            font-size: 14px;
-            text-align: center;
-        }
-        .btn1 {
- width: 200px;
-            height: 200px;
-            padding: 20px 32px;
-            border-radius: 100px;
-            font-size: 14px;
-            text-align: center;
-  font-size: 22px;
-  text-decoration: none;
-  margin: 20px;
-  color: #fff;
-  position: relative;
-  display: inline-block;
-}
-
-.btn1:active {
-  transform: translate(0px, 5px);
-  -webkit-transform: translate(0px, 5px);
-  box-shadow: 0px 1px 0px 0px;
-}
-
-
-.green {
-
-  
-  box-shadow: 3px 5px 5px #888888;
-  border-radius: 100px;
-  transition: all 1s ease;
-  transform: scale(1);
-}
-
-.green:hover {
-  background-color: #000;
-/*  Making button bigger on hover  */
-  transform: scale(1.5) perspective(1px)
-}
-    </style>
 </head>
 <body>
-  <div class="topnav">
-  <a class="active">Admin Name:' . $name . '|Email:' . $email . '</a>
-  
+ <div class="navbar navbar-inverse nav">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand">CMS</a>
+    		
+          	<div class="nav-collapse collapse">
+              <ul class="nav">
+                  <li class="divider-vertical"></li>
+                  <li><a href="' . $link . 'admin/home.php"><i class="icon-home icon-white"></i> Home</a></li>
+              </ul>
+              <ul class="nav">
+                  <li class="divider-vertical"></li>
+                  <li><a href="' . $link . 'admin/edit/headeredit.php"><i class="icon-edit icon-white"></i> Header</a></li>
+              </ul>
+              <ul class="nav">
+                  <li class="divider-vertical"></li>
+                  <li><a href="' . $link . 'admin/edit/footeredit1.php"><i class="icon-edit icon-white"></i> Footer</a></li>
+              </ul>
+              <ul class="nav">
+                  <li class="divider-vertical"></li>
+                  <li><a href="' . $link . 'admin/edit/banner.php"><i class="icon-edit icon-white"></i> Banner</a></li>
+              </ul>
+              <ul class="nav">
+                  <li class="divider-vertical"></li>
+                  <li><a href="' . $link . 'admin/edit/security.php"><i class="icon-edit icon-white"></i>Security</a></li>
+              </ul>
+              <div class="pull-right">
+                <ul class="nav pull-right">
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, ' . $name . ' <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="/help/support"><i class="icon-envelope"></i>' . $email . '</a></li>
+                            <li class="divider"></li>
+                            <li><a href="../../cmsadminlogout.php"><i class="icon-off"></i>Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+              </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 </body>
-  
+
 </html>';
   }
 }
