@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('../connection.php');
+include('../cmsadmin/admin/adminheader.php');
 if (isset($_SESSION['token'])) {
     $token = $_SESSION['token'];
     $sql = "select * from sessionTable where token='$token'";
@@ -75,7 +76,7 @@ if (isset($_SESSION['token'])) {
             //$link .= $_SERVER['REQUEST_URI'];
 
             // Print the link
-            $link .= '/pjim/audio/';
+            $link .= '/kalyani2022/pjim/audio/';
             // Define maxsize for files i.e 2MB
             //$maxsize = 2 * 1024 * 1024;
 
@@ -298,7 +299,7 @@ body{
 <body>
 <div id="main">
     	<div class="fof">
-        		<h1>Not Authorized to upload images</h1>
+        		<h1>Not Authorized to upload audio</h1>
     	</div>
 </div>
 </body>
@@ -307,3 +308,6 @@ body{
 echo '</div>
     </body>
 </html>';
+
+sleep(2);
+echo "<script>window.location.href='../pjimcms/admin/edit/footeredit1.php';</script>";
