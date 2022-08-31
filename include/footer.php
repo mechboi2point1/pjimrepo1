@@ -1,3 +1,6 @@
+<?php
+include('../connection.php');
+?>             
              <div class="footer mt-5">
              	<div class="footr container">
              		<div class="col-md-12">
@@ -10,11 +13,8 @@
              				<div class="col-md-3">
              					<h4 class="m-0 "><span class="orngTxt">Rasraj Pandit Jasraj</span> <br><span class="fnt17">Audio Book Excerpts</span> </h4>
              					<?php
-									$host = "localhost";
-									$user = "cassixcom_aa_user";
-									$password = 'akhilaanimesh.1410';
-									$db_name = "cassixcom_cassixco_AA_db";
-
+									
+include('../connection.php');
 									$con = mysqli_connect($host, $user, $password, $db_name);
 									$sql = "select * from audio_table ORDER BY linkid DESC";
 									$result = mysqli_query($con, $sql);
@@ -44,11 +44,8 @@
              						<ul class="pl-0 list-unstyled">
              							<?php
 
-											$host = "localhost";
-											$user = "cassixcom_aa_user";
-											$password = 'akhilaanimesh.1410';
-											$db_name = "cassixcom_cassixco_AA_db";
-											$con = mysqli_connect($host, $user, $password, $db_name);
+											
+											//$con = mysqli_connect($host, $user, $password, $db_name);
 											$sql = "select * from suggested_link_table";
 											$result = mysqli_query($con, $sql);
 											while ($row = mysqli_fetch_assoc($result)) {
@@ -101,10 +98,7 @@
              								</span>
              							</p>
              							<?php
-											$host = "localhost";
-											$user = "cassixcom_aa_user";
-											$password = 'akhilaanimesh.1410';
-											$db_name = "cassixcom_cassixco_AA_db";
+											include('../connection.php');
 											$con = mysqli_connect($host, $user, $password, $db_name);
 											$sql = "select * from email_table";
 											$result = mysqli_query($con, $sql);
