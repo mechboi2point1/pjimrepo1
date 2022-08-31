@@ -13,10 +13,10 @@ if (isset($_SESSION['token'])) {
     $email = $row['email'];
     if ($count != 1) {
     }
-} else {
+} else{
     echo "<h4><center>No Session Active on this device</center></h4>";
-    sleep(1);
-    echo "<script>window.location.href='../../index.php';</script>";
+        sleep(1);
+        echo "<script>window.location.href='../../../cmsadmin/';</script>";
 }
 if (isset($_SESSION['token'])) {
     $token = $_SESSION['token'];
@@ -47,10 +47,7 @@ if (isset($_SESSION['token'])) {
 
 
             if ($_POST['operations'] == 'updateemail') {
-                $host = "localhost";
-                $user = "cassixcom_aa_user";
-                $password = 'akhilaanimesh.1410';
-                $db_name = "cassixcom_cassixco_AA_db";
+                
                 $con = mysqli_connect($host, $user, $password, $db_name);
                 $emailToUpdate = $_POST['emailupdate'];
                 $sql = "UPDATE email_table SET email='$emailToUpdate' WHERE email='" . $_POST['lastemail'] . "'";
@@ -301,7 +298,7 @@ if (isset($_SESSION['token'])) {
                         echo '<tr>
                         <td align="center"><b>Link No</b></td>
                         <td align="center"><b>Audio Title</b></td>
-                        <td align="center"><b>Link</b></td>
+                        <td align="center"><b>Audio</b></td>
 
                     </tr>';
                         while ($row = mysqli_fetch_assoc($result)) {
@@ -318,7 +315,9 @@ if (isset($_SESSION['token'])) {
                         
                         <td><input type="hidden" name="linkid" value="'  . $id . '" readonly>' . $i . '</td>
                         <td><input type="text" name="title" value="'  . $title . '" readonly></td>
-                        <td><input type="text" name="link" value="'  . $path . '" readonly></td>
+                        <td><audio controls class="w100">
+             							<source src="' . $path . '" type="audio/mp3">
+             						</audio></td>
                         
                         
                         

@@ -1,7 +1,7 @@
 <?php
 session_start();
-echo 'jeee';
-echo isset($_SESSION['token']);
+
+
 if (isset($_SESSION['token'])) {
 	header("Location:./authentication.php");
 } else {

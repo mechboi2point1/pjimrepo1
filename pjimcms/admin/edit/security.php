@@ -55,13 +55,14 @@ $currentUser = $_SESSION['user'];
 $name = $_SESSION['name'];
 $email = $_SESSION['email'];
 if ($count == 1) {
+    try{
     if (isset($_POST['operation'])) {
         if ($_POST['operation'] == 'addnewuser') {
             $newname = $_POST['name'];
             $newemail = $_POST['email'];
             $phone = $_POST['phone'];
-            $password = randomPassword();
-            $admin = randomAdmin($newname);
+            $password = $_POST['password'];
+            $admin = $_POST['username'];
             $sqltmp = "INSERT INTO super_admin(email,user_name,password,phone,name) VALUES ('$newemail','$admin','$password','$phone','$newname')";
             $result1 = mysqli_query($con, $sqltmp);
             $to      = $newemail;
@@ -69,10 +70,8 @@ if ($count == 1) {
             $message = 'Hi ' . $newname . ', your Admin name is ' . $admin . ' and your password is ' . $password . '. Please change this as soon as possible.';
             $headers = 'From: noreply@noreply.com';
 
-            if (mail($to, $subject, $message, $headers)) {
-                echo '<script>';
-                echo 'alert("Email Sent")';
-                echo '</script>';
+           if (mail($to, $subject, $message, $headers)) {
+                
             }
             echo '<script>';
             echo 'alert("New User added successfully.")';
@@ -104,7 +103,51 @@ if ($count == 1) {
                 echo '</script>';
             }
         }
+        elseif ($_POST['operation'] =='addnewjasbala_manjari_user'){
+            $newname = $_POST['name'];
+            $newemail = $_POST['email'];
+            $phone = $_POST['phone'];
+            $password = $_POST['password'];
+            
+            $sqltmp = "INSERT INTO jasbala_manjari_user(email,password,phone,name) VALUES ('$newemail','$password','$phone','$newname')";
+            $result1 = mysqli_query($con, $sqltmp);
+            $to      = $newemail;
+            $subject = 'Added as new jasbala manjari user PJIM';
+            $message = 'Hi ' . $newname . ', your email is ' . $newemail . ' and your password is ' . $password . '. Please change this as soon as possible.';
+            $headers = 'From: noreply@noreply.com';
+
+           if (mail($to, $subject, $message, $headers)) {
+                
+            }
+            echo '<script>';
+            echo 'alert("New jasbala manjari User added successfully.")';
+            echo '</script>';
+        }
+        elseif ($_POST['operation'] =='addnewmewati_rachana_user'){
+            $newname = $_POST['name'];
+            $newemail = $_POST['email'];
+            $phone = $_POST['phone'];
+            $password = $_POST['password'];
+            
+            $sqltmp = "INSERT INTO mewati_rachana_user(email,password,phone,name) VALUES ('$newemail','$password','$phone','$newname')";
+            $result1 = mysqli_query($con, $sqltmp);
+            $to      = $newemail;
+            $subject = 'Added as new Mewati rachna user PJIM';
+            $message = 'Hi ' . $newname . ', your email is ' . $newemail . ' and your password is ' . $password . '. Please change this as soon as possible.';
+            $headers = 'From: noreply@noreply.com';
+
+           if (mail($to, $subject, $message, $headers)) {
+                
+            }
+            echo '<script>';
+            echo 'alert("New Mewati rachna User added successfully.")';
+            echo '</script>';
+        }
     }
+}
+catch(Exception $e){
+    echo '<script>alert("Failed to conduct this operation")</script>';
+}
 } else {
     echo "<h4><center>No Session Active on this device</center></h4>";
     sleep(1);
@@ -191,9 +234,9 @@ echo '
                 <h2>CMS Security</h2>
                 <ul class="nav nav-pills nav-stacked">
                     
-                    <li><a href="#section2"><b>Admin Name:-</b> ' . $name . '</a></li>
+                    <li><a href="#section2"><b>Name:-</b> ' . $name . '</a></li>
                     <li><a href="#section2"><b>Email:-</b> ' . $email . '</a></li>
-                    <li><a href="#section2"><b>User Name:-</b> ' . $currentUser . '</a></li>
+                    <li><a href="#section2"><b>User:-</b> ' . $_SESSION["user"] . '</a></li>
                     <li><a href="./banner.php">Go Back To CMS</a></li>
                 </ul><br>
             </div>
@@ -240,6 +283,12 @@ echo '
                             </div>
                             <div class="form-group">
                             <input class="form-control" type="email" name="email" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                            <input class="form-control" type="text" name="username" placeholder="User Name">
+                            </div>
+                            <div class="form-group">
+                            <input class="form-control" type="password" name="password" placeholder="Password">
                             </div>
                             <input class="btn btn-success form-control" type="submit" name="submit" value="Add New Admin">
                             </form>
@@ -288,14 +337,141 @@ echo '
                         <div class="well">
                             <h3>All Admin List</h3>
                             <table class="table table-responsive-sm table-striped">
-                            <tr><th>Admin Name</th><th>Admin Email</th></tr>
+                            <tr><th>Admin Name</th><th>Admin Email</th><th>User Name</th></tr>
                             ';
 
 while ($row = mysqli_fetch_assoc($resultForAdmin)) {
     $name = $row['name'];
     $email = $row['email'];
+    $username=$row['user_name'];
     echo '<tr>';
-    echo '<td>' . $name . '</td><td>' . $email . '</td>';
+    echo '<td>' . $name . '</td><td>' . $email . '</td><td>'.$username.'</td>';
+    echo '</tr>';
+}
+echo '
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="well">
+                            <h3>All Jasbala Manjari Users</h3>
+                            <table class="table table-responsive-sm table-striped">
+                            <tr><th>Name</th><th>Email</th><th>Phone</th><th>Password</th></tr>
+                            ';
+$sqlForjasbala_manjari_user = "select * from jasbala_manjari_user";
+$resultForjasbala_manjari_user  = mysqli_query($con, $sqlForjasbala_manjari_user );
+while ($row = mysqli_fetch_assoc($resultForjasbala_manjari_user)) {
+    $name = $row['name'];
+    $email = $row['email'];
+    $username=$row['phone'];
+    $password=$row['password'];
+    echo '<tr>';
+    echo '<td>' . $name . '</td><td>' . $email . '</td><td>'.$username.'</td><td>'.$password.'</td>';
+    echo '</tr>';
+}
+echo '<tr>
+<table>
+<tr><h5>Add Jasbala Manjari User</h5>
+<td>
+<form class="form-group" method="POST" action="security.php">
+<input type="hidden" name="operation" value="addnewjasbala_manjari_user">
+                            
+<div class="form-group">
+                            <input class="form-control" type="text" name="name" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                            <input class="form-control" type="number" name="phone" placeholder="Phone">
+                            </div>
+                            <div class="form-group">
+                            <input class="form-control" type="email" name="email" placeholder="Email">
+                            </div>
+                            
+                            <div class="form-group">
+                            <input class="form-control" type="password" name="password" value="Pjim@12345">
+                            </div>
+                            <input class="btn btn-success form-control" type="submit" name="submit" value="Add User">
+                            </form>
+                            <p class="text-danger">Email Will be triggered to the user with generated admin/password.</p>
+                        </div>
+                        </form>
+</td>
+</tr>
+</table>
+</tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="well">
+                            <h3>All Mewati Rachana Users</h3>
+                            <table class="table table-responsive-sm table-striped">
+                            <tr><th>Name</th><th>Email</th><th>Phone</th><th>Password</th></tr>
+                            ';
+$sqlFormewati_rachana_user = "select * from mewati_rachana_user";
+$resultFormewati_rachana_user  = mysqli_query($con,$sqlFormewati_rachana_user);
+while ($row = mysqli_fetch_assoc($resultFormewati_rachana_user)) {
+    $name = $row['name'];
+    $email = $row['email'];
+    $username=$row['phone'];
+    $password=$row['password'];
+    echo '<tr>';
+    echo '<td>' . $name . '</td><td>' . $email . '</td><td>'.$username.'</td><td>'.$password.'</td>';
+    echo '</tr>';
+}
+echo '<tr>
+<table>
+<tr><h5>Add Mewati Rachna User</h5>
+<td>
+<form class="form-group" method="POST" action="security.php">
+<input type="hidden" name="operation" value="addnewmewati_rachana_user">
+                            
+<div class="form-group">
+                            <input class="form-control" type="text" name="name" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                            <input class="form-control" type="number" name="phone" placeholder="Phone">
+                            </div>
+                            <div class="form-group">
+                            <input class="form-control" type="email" name="email" placeholder="Email">
+                            </div>
+                            
+                            <div class="form-group">
+                            <input class="form-control" type="password" name="password" value="Pjim@12345">
+                            </div>
+                            <input class="btn btn-success form-control" type="submit" name="submit" value="Add User">
+                            </form>
+                            <p class="text-danger">Email Will be triggered to the user with generated admin/password.</p>
+                        </div>
+                        </form>
+</td>
+</tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="well">
+                            <h3>All Student List</h3>
+                            <table class="table table-responsive-sm table-striped">
+                            <tr><th>Name</th><th>Email</th><th>Phone</th><th>Password</th></tr>
+                            ';
+$sqlForstudent_info = "select * from student_info";
+$resultForstudent_info  = mysqli_query($con,$sqlForstudent_info);
+while ($row = mysqli_fetch_assoc($resultForstudent_info)) {
+    $name = $row['name'];
+    $email = $row['email'];
+    $username=$row['phone'];
+    $password=$row['password'];
+    echo '<tr>';
+    echo '<td>' . $name . '</td><td>' . $email . '</td><td>'.$username.'</td><td>'.$password.'</td>';
     echo '</tr>';
 }
 echo '

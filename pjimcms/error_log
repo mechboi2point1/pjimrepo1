@@ -1,5 +1,8 @@
-[18-Aug-2022 13:19:58 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/authentication.php on line 26
-[18-Aug-2022 13:25:07 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/authentication.php on line 26
-[18-Aug-2022 13:25:43 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/authentication.php on line 26
-[18-Aug-2022 13:25:49 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/authentication.php on line 26
-[18-Aug-2022 13:27:42 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/cassixcom/public_html/adminsuper/authentication.php on line 26
+[21-Aug-2022 15:42:18 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in /home/cassixcom/public_html/kalyani2022/pjim/cmsadmin/authentication.php on line 63
+[21-Aug-2022 15:42:35 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/cassixcom/public_html/kalyani2022/pjim/cmsadmin/connection.php:12) in /home/cassixcom/public_html/kalyani2022/pjim/cmsadmin/authentication.php on line 59
+[21-Aug-2022 15:44:12 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in /home/cassixcom/public_html/kalyani2022/pjim/cmsadmin/authentication.php on line 63
+[21-Aug-2022 15:44:59 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in /home/cassixcom/public_html/kalyani2022/pjim/cmsadmin/authentication.php on line 63
+[21-Aug-2022 16:22:43 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in /home/cassixcom/public_html/kalyani2022/pjim/cmsadmin/authentication.php on line 66
+[21-Aug-2022 16:26:30 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in /home/cassixcom/public_html/kalyani2022/pjim/cmsadmin/authentication.php on line 67
+[21-Aug-2022 20:46:25 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in /home/cassixcom/public_html/kalyani2022/pjim/cmsadmin/authentication.php on line 68
+[22-Aug-2022 10:57:16 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in /home/cassixcom/public_html/kalyani2022/pjim/cmsadmin/authentication.php on line 68

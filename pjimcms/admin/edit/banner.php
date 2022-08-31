@@ -1,7 +1,24 @@
- <?php
+<?php
     session_start();
     include('../../connection.php');
     include('../adminheader.php');
+    if (isset($_POST['operations'])) {
+                if ($_POST['operations'] == 'delete') {
+
+                    $sql = "select *from banner_table where banner_id=" . $_POST['bannerid'];
+                    $result = mysqli_query($con, $sql);
+
+                    $count = mysqli_num_rows($result);
+                    if ($count > 0) {
+
+                        $sql = "DELETE FROM banner_table where banner_id=" . $_POST['bannerid'];
+                        $result = mysqli_query($con, $sql);
+                    } else {
+                        echo '<h4>Banner is already deleted or dosenot exist in Data Base.</h4>';
+                        echo '<hr>';
+                    }
+                }
+            }
     echo "
             <!DOCTYPE html>
 <html>
@@ -101,7 +118,7 @@
                             echo '<tr>
                         <td align="center"><b>Banner No</b></td>
                         <td align="center"><b>Image</b></td>
-                        <td align="center"><b>Link</b></td>
+                        
                         <td align="center"><b>Added By</b></td>
 
                     </tr>';
@@ -120,7 +137,7 @@
                         
                         <td><input type="hidden" name="linkid" value="'  . $id . '" readonly>' . $i . '</td>
                         <td><image src="' . $path . '" alt="..." width="200px" height="150px"></td>
-                        <td><input type="text" name="link" value="'  . $path . '" readonly></td>
+                        
                         <td><input type="text" name="link" value="'  . $by . '" readonly></td>
                         
                         

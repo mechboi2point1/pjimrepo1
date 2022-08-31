@@ -11,6 +11,7 @@ if (isset($_SESSION['token'])) {
     $count = mysqli_num_rows($result);
     $email = $row['email'];
     if ($count != 1) {
+        exit();
     }
 } else {
     echo 'Not allowed to access this page';
@@ -60,6 +61,9 @@ if (isset($_POST['operation'])) {
 <head>
     <title>PJIM Header Edit</title>
     <!-- Latest compiled and minified CSS -->
+    <script>
+        var dict = {};
+    </script>
     <style>
         /* Remove default bullets */
         .btn {
@@ -135,15 +139,13 @@ if (isset($_POST['operation'])) {
 </head>
 
 <body>
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <table style="width:100%;height:100%" border="1" cellspacing="1">
         <tr ALIGN=CENTER style="width:100%;">
             <th style="width:30%;">Edit</th>
-            <th style="width:70%;">Header View</th>
+            <th style="width:70%;">View</th>
         </tr>
-        <tr VALIGN=TOP style="height:100%">
-            <td bgcolor="#3FD1F1" style=" display: block;
-  height: 500px;
-  overflow-y: scroll;">
+        <tr VALIGN=TOP style="height:100%;width:100%">
+            <td bgcolor="#3FD1F1" style=" display: block;overflow-y: scroll;width:100%;height:600px">
 
                 <?php
                 include('../../connection.php');
@@ -166,20 +168,35 @@ if (isset($_POST['operation'])) {
                         $subheaderTitle = $row1['subtitle'];
                         $subheaderLink = $row1['link'];
                         $subheaderid = $row1['subid'];
-                        echo '<li><span class="careter">' . $i . '.' . $subheaderTitle . '</span><ul class="nested">
+                        $isEditable = $row1['isEditable'];
+                        $isEditableText = '';
+                        if ($isEditable) {
+                            $isEditableText = '(Edit)';
+                        } else {
+                            $isEditableText = '';
+                        }
+                        echo '<li><span class="careter">' . $i . '.' . $subheaderTitle . '' . $isEditableText . '</span><ul class="nested">
                     <li>
                     <b>Update Sub Header</b>
-                    <form method="POST" action="./headeredit.php">Title:<input type="text" name="operation" value="updatesubheader" hidden><input type="text" name="subheaderid" value="' . $subheaderid . '" hidden><input type="text" name="subheadertitle" value="' . $subheaderTitle . '"><br/>Link:<input type="text" name="subheaderlink" value="' .  $subheaderLink . '"><input type="submit" value="Update"></form>
+                    <form method="POST" action="./headeredit.php">Title:<input type="hidden" name="operation" value="updatesubheader"><input type="hidden" name="subheaderid" value="' . $subheaderid . '"><input type="text" name="subheadertitle" value="' . $subheaderTitle . '"><br/><input type="hidden" name="subheaderlink" value="' .  $subheaderLink . '"><input type="submit" value="Update"></form>
                     </li>
                     <li>
                     <b>Delete Sub Header:-' . $subheaderTitle . '</b>
-                    <form method="POST" action="./headeredit.php" onsubmit="return confirm(\'Are you sure you want to delete sub-header ' . $subheaderTitle . '? This change cannot be reverted.\');"><input type="text" name="headerid" value="' . $subheaderid . '" hidden><input type="submit" name="submit" value="Delete"><input type="text" name="operation" value="deletesubheader" hidden></form>
-                    </li>
-                    </ul></li>';
+                    <form method="POST" action="./headeredit.php" onsubmit="return confirm(\'Are you sure you want to delete sub-header ' . $subheaderTitle . '? This change cannot be reverted.\');"><input type="hidden" name="headerid" value="' . $subheaderid . '"><input type="submit" name="submit" value="Delete"><input type="hidden" name="operation" value="deletesubheader"></form>
+                    </li>';
+                        if ($isEditable) {
+                            //$isEditableText = '(Edit)';
+                            echo '<li>
+                    <b>Edit:-' . $subheaderTitle . '</b>
+                    <form method="POST" action="./headeredit.php"><input type="hidden" name="page" value="' . $row1['editpage'] . '"><input type="submit" name="submit" value="Edit"></form>
+                    </li>';
+                        }
+                        echo '</ul></li>';
                     }
-                    echo '<li><a><b>Update Header:</a></b><form method="POST" action="./headeredit.php" ><input type="text" name="headerid" value="' . $headerid . '" hidden><input type="text" name="operation" value="updateheader" hidden><br/>Title:<input type="text" name="title" value="' . $headerTitle . '"><br/>Link:<input type="text" value="' . $headerLink . '" name="link"><input type="submit" name="submit" value="Update"></form></li>';
-                    echo '<li><a><b>Delete Header:</a></b></b><form method="POST" action="./headeredit.php" onsubmit="return confirm(\'Are you sure you want to delete header ' . $headerTitle . '? This change cannot be reverted.\');"><input type="text" name="headerid" value="' . $headerid . '" hidden><input type="submit" name="submit" value="Delete"><input type="text" name="operation" value="deleteheader" hidden></form></li>';
-                    echo '<li><a><b>Add New Sub Header:</a></b></b><form method="POST" action="./headeredit.php" ><input type="text" name="headerid" value="' . $headerid . '" hidden><input type="text" name="operation" value="addsubheader" hidden><input type="text" name="title" placeholder="Title"><input type="text" placeholder="Link" name="link"><input type="submit" name="submit" value="Add Sub Header"></form></li>';
+                    echo '<li><a><b>Update Header:</a></b><form method="POST" action="./headeredit.php" ><input type="hidden" name="headerid" value="' . $headerid . '"><input type="hidden" name="operation" value="updateheader"><br/>Title:<input type="text" name="title" value="' . $headerTitle . '"><br/><input type="hidden" value="' . $headerLink . '" name="link"><input type="submit" name="submit" value="Update"></form></li>';
+                    echo '<li><a><b>Delete Header:</a></b></b><form method="POST" action="./headeredit.php" onsubmit="return confirm(\'Are you sure you want to delete header ' . $headerTitle . '? This change cannot be reverted.\');"><input type="hidden" name="headerid" value="' . $headerid . '"><input type="submit" name="submit" value="Delete"><input type="hidden" name="operation" value="deleteheader"></form></li>';
+                    echo '<li hidden><a><b>Add New Sub Header:</a></b></b><form method="POST" action="./headeredit.php" ><input type="hidden" name="headerid" value="' . $headerid . '"><input type="hidden" name="operation" value="addsubheader"><input type="text" name="title" placeholder="Title"><input type="text" placeholder="Link" name="link"><input type="submit" name="submit" value="Add Sub Header"></form></li>';
+
 
 
                     echo '</ul>';
@@ -190,8 +207,18 @@ if (isset($_POST['operation'])) {
                 ?>
             </td>
 
-            <td><?php
-                echo '
+            <td style='width:300px;'>
+
+                <?php
+                if (isset($_POST['page'])) {
+
+                    $uri = './' . $_POST['page'];
+                    //echo $uri;
+                    echo '<iframe style="width: 100%;height:100%" src="' . $uri . '">';
+                    //include($uri);
+                    echo '</iframe>';
+                } else {
+                    echo '
                 <!DOCTYPE html>
 <html lang="en">
 
@@ -731,7 +758,7 @@ li.slick-active button {
 </head>
 
 
-    <div class="">
+    <div id="rightpane">
         <div class="" id="">
             <header>
                
@@ -747,42 +774,43 @@ li.slick-active button {
                         <div class="nav_menu text-center">
                             <ul class="pl-0 mb-0">
                 '; ?>
-                <?php
-                include('../../connection.php');
-                $sqlHeader = "select * from headernavigation";
-                $result = mysqli_query($con, $sqlHeader);
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $headerTitle = $row['title'];
-                    $headerLink = $row['headerlink'];
-                    echo '<li><a>' . $headerTitle . '</a><span class="dropdown_icon"><i class="fa fa-chevron-down" aria-hidden="true"></i></span><ul class="ul-submenu pl-0 gurukul">';
-                    $sqlHeaderSub = "select * from headernavigationsublink where headerid=" . $row['id'];
-                    $result1 = mysqli_query($con, $sqlHeaderSub);
-                    while ($row1 = mysqli_fetch_assoc($result1)) {
-                        $subheaderTitle = $row1['subtitle'];
-                        $subheaderLink = $row1['link'];
-                        echo '<li><a>' . $subheaderTitle . '</a></li>';
+                    <?php
+                    include('../../connection.php');
+                    $sqlHeader = "select * from headernavigation";
+                    $result = mysqli_query($con, $sqlHeader);
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $headerTitle = $row['title'];
+                        $headerLink = $row['headerlink'];
+                        echo '<li><a>' . $headerTitle . '</a><span class="dropdown_icon"><i class="fa fa-chevron-down" aria-hidden="true"></i></span><ul class="ul-submenu pl-0 gurukul">';
+                        $sqlHeaderSub = "select * from headernavigationsublink where headerid=" . $row['id'];
+                        $result1 = mysqli_query($con, $sqlHeaderSub);
+                        while ($row1 = mysqli_fetch_assoc($result1)) {
+                            $subheaderTitle = $row1['subtitle'];
+                            $subheaderLink = $row1['link'];
+                            echo '<li><a>' . $subheaderTitle . '</a></li>';
+                        }
+                        echo '</ul></li>';
                     }
-                    echo '</ul></li>';
-                }
-                ?>
+                    ?>
                 <?php
-                echo '
+                    echo '
                 </div>
                     </div>
                 </div>
             </header>
                 ';
+                }
                 ?>
             </td>
         </tr>
-        <tr ALIGN=CENTER>
+        <tr ALIGN=CENTER hidden>
             <td bgcolor="#f4efe7" style="height:100px;"><b>Add New Header:</b></a>
 
                 <form method="POST" action="./headeredit.php">
 
                     <input name="title" type="text" placeholder="Title"></br></br>
                     <input name="link" type="text" placeholder="Link"></br>
-                    <input type="text" name="operation" value="addheader" hidden><br />
+                    <input type="hidden" name="operation" value="addheader"><br />
                     <input type="submit" name="submit" value="Add Header link">
                 </form>
             </td>
@@ -796,6 +824,27 @@ li.slick-active button {
                 this.parentElement.querySelector(".nested").classList.toggle("active");
                 this.classList.toggle("careter-down");
             });
+        }
+
+        function restRightPane(page) {
+            console.log(page);
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "headeredit.php");
+            xhr.setRequestHeader("Accept", "application/json");
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    console.log(xhr.status);
+                    console.log(xhr.responseText);
+                }
+            };
+
+            let data = {
+                "page": page
+            };
+
+            xhr.send(data);
         }
     </script>
 

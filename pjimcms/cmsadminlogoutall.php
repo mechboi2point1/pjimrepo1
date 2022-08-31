@@ -14,6 +14,10 @@ if (isset($_SESSION['token'])) {
         sleep(1);
         echo "<h4><center>Please wait we are destroying you session keys... </center></h4>";
         sleep(1);
+        $email=$row['email'];
+        $sql="DELETE FROM sessionTable WHERE email='".$email."'";
+        
+        $result = mysqli_query($con, $sql);
         echo "<script>window.location.href='../cmsadmin/';</script>";
         exit;
     }

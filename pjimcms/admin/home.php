@@ -63,12 +63,12 @@ if (isset($_SESSION['token'])) {
 <body class="xyz" style="background-image: url(https://www.cassixcom.in/adminsuper/images/bg.jpg);height: 100%; background-position: center; background-repeat: no-repeat;">
 <center><h3 id="lblGreetings"></h3></center>
 <div style="padding-top: 150px;">
-    <button type="button" class="btn1" onclick="location.href = \'../admin/edit/banner.php\';" >Banners</a>
-    <button type="button" class="btn1" onclick="location.href = \'../admin/edit/footeredit1.php\';">Footer</button>
-    <button type="button" class="btn1" onclick="location.href = \'../admin/edit/headeredit.php\';">Header</button>
+    <button type="button" class="btn1" onclick="location.href = \'./edit/banner.php\';" >Banners</a>
+    <button type="button" class="btn1" onclick="location.href = \'./edit/footeredit1.php\';">Footer</button>
+    <button type="button" class="btn1" onclick="location.href = \'./edit/headeredit.php\';">Header</button>
     
     
-    <button type="button" class="btn1">Sub Sections</button>
+  
      </div>
 </body>
 <script>
@@ -86,7 +86,7 @@ var name="' . $name . '"+" ";
         greet = "Good Evening";
 
     document.getElementById("lblGreetings").innerHTML =
-        "<b>Hi "+name + greet + "</b>.";
+        "<b>Hi "+name+","+ greet + "</b>.";
 </script> 
   
 </html> 

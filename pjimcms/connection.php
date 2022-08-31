@@ -1,12 +1,10 @@
 <?php      
     $host = "localhost";  
-    $user = "cassixcom_aa_user";  
-    $password = 'akhilaanimesh.1410';  
-    $db_name = "cassixcom_cassixco_AA_db";  
+    $user = "cassixcom_pjim_user_admin";  
+    $password = 'pjimadmin123';  
+    $db_name = "cassixcom_pjim_db";  
       
     $con = mysqli_connect($host, $user, $password, $db_name);  
     if(mysqli_connect_errno()) {  
-        die("Failed to connect with MySQL: ". mysqli_connect_error());  
+        die("Failed to connect with DataBase");  
     }
-    
-?>  

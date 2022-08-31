@@ -26,7 +26,7 @@ if (isset($_SESSION['token'])) {
 
     // Print the link
     //$link .= '/kalyani2022/pjim/cmsadmin/';
-    $link .= '/pjim/cmsadmin/';
+    $link .= '/kalyani2022/pjim/pjimcms/';
     echo '
             <!DOCTYPE html>
 <html>
@@ -68,18 +68,26 @@ if (isset($_SESSION['token'])) {
                   <li class="divider-vertical"></li>
                   <li><a href="' . $link . 'admin/edit/banner.php"><i class="icon-edit icon-white"></i> Banner</a></li>
               </ul>
+              
               <ul class="nav">
                   <li class="divider-vertical"></li>
                   <li><a href="' . $link . 'admin/edit/security.php"><i class="icon-edit icon-white"></i>Security</a></li>
               </ul>
               <div class="pull-right">
                 <ul class="nav pull-right">
+                <ul class="nav">
+                  <li class="divider-vertical"></li>
+                  <!--<li><a href="' . $link . 'admin/edit/editor.php">Static Site Developer<i class="icon-play icon-white"></i></a></li>-->
+              </ul>
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, ' . $name . ' <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             
-                            <li><a href="/help/support"><i class="icon-envelope"></i>' . $email . '</a></li>
+                            <li><a><i class="icon-envelope"></i> ' . $email . '</a></li>
                             <li class="divider"></li>
-                            <li><a href="../../cmsadminlogout.php"><i class="icon-off"></i>Logout</a></li>
+                            <li><a href="../../cmsadminlogout.php"><i class="icon-off"></i> Logout(Curret Device)</a></li>
+                            <li class="divider"></li>
+                            <center><a style="color:red;">Recommended.</a><center>
+                            <li><a href="../../cmsadminlogoutall.php"><i class="icon-off"></i> Logout(All Device)</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -93,4 +101,9 @@ if (isset($_SESSION['token'])) {
 
 </html>';
   }
+}
+else{
+    echo "<h4><center>No Session Active on this device</center></h4>";
+        sleep(1);
+        echo "<script>window.location.href='../../index.php';</script>";
 }
