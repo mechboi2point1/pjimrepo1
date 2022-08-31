@@ -75,7 +75,7 @@ if (isset($_SESSION['token'])) {
 			//$link .= $_SERVER['REQUEST_URI'];
 
 			// Print the link
-			$link .= '/kalyani2022/pjim/images/banner/';
+			$link .= '/kalyani2022/pjim/images/';
 			// Define maxsize for files i.e 2MB
 			$maxsize = 2 * 1024 * 1024;
 
