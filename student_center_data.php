@@ -616,6 +616,7 @@ include('./student_aurthorization.php');
                                             <td><select name="os0" class="form-control">
                                                     <option value="Child [50 + 25 + 1.99]">Child [50 + 25 + 1.99] $76.99 USD</option>
                                                     <option value="Adult [60 + 25 + 2.22]">Adult [60 + 25 + 2.22] $87.22 USD</option>
+                                                    <option value="Adult [61 + 25 + 2.22]">Adult [61 + 25 + 2.22] $88.22 USD</option>
                                                 </select> </td>
                                         </tr>
                                     </table>

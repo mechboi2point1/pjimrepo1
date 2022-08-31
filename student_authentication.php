@@ -22,7 +22,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         $date_now = date('Y-m-d H:m:s', strtotime($date_now . '+ 1 days'));
         $token1 = openssl_random_pseudo_bytes(32);
         $token1 = bin2hex($token1); //req
-        $sql = "INSERT INTO studnet_session_info(token,expiry,ip,agent,location) VALUES ('$token1','$date_now','$ip','$agent','$city')";
+        $sql = "INSERT INTO studnet_session_info(token,expiry,ip,agent,location,email) VALUES ('$token1','$date_now','$ip','$agent','$city','$username')";
         $result = mysqli_query($con, $sql);
         $_SESSION['student_token'] = $token1;
         echo "<script>window.location.href='./student_center_data.php';</script>";
